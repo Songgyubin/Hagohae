@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hagohae</string>
+    <string name="accessibility_service_description">description</string>
 </resources>
