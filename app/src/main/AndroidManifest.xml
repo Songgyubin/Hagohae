@@ -41,6 +41,7 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
     </application>
+
     <queries>
         <!-- 카카오톡 -->
         <package android:name="com.kakao.talk" />
