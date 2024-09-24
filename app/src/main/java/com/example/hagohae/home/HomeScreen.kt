@@ -17,6 +17,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
@@ -52,24 +58,41 @@ import net.skyscanner.backpack.compose.theme.BpkTheme
 fun HomeScreen(
     innerPadding: PaddingValues = PaddingValues(),
 ) {
-    Column(
+    Box(
         modifier = Modifier
             .background(BpkTheme.colors.surfaceDefault)
             .fillMaxSize()
             .padding(innerPadding)
     ) {
-        BpkText(
-            modifier = Modifier.padding(start = 20.dp, top = 20.dp),
-            text = stringResource(R.string.app_slogan),
-            color = BpkTheme.colors.textPrimary,
-            style = BpkTheme.typography.heading2
-        )
+        Column {
+            BpkText(
+                modifier = Modifier.padding(start = 20.dp, top = 20.dp),
+                text = stringResource(R.string.app_slogan),
+                color = BpkTheme.colors.textPrimary,
+                style = BpkTheme.typography.heading2
+            )
 
-        Missions(
+            Missions(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 30.dp)
+            )
+        }
+
+        FloatingActionButton(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 30.dp)
-        )
+                .align(Alignment.BottomEnd)
+                .padding(20.dp),
+            shape = CircleShape,
+            containerColor = BpkTheme.colors.corePrimary,
+            onClick = {}
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Add,
+                tint = Color.White,
+                contentDescription = null
+            )
+        }
     }
 }
 
@@ -217,7 +240,8 @@ fun FourBoxIcons(
                 else -> PaddingValues(start = 1.dp, top = 1.dp)
             }
             BpkCard(
-                modifier = Modifier.align(align)
+                modifier = Modifier
+                    .align(align)
                     .size(width = (boxSize.width / 6).dp, height = (boxSize.height / 6).dp)
                     .padding(padding),
                 padding = BpkCardPadding.None,
