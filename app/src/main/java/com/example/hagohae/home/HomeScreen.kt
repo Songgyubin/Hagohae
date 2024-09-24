@@ -30,8 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
@@ -227,23 +225,11 @@ fun FourBoxIcons(
             .padding(2.dp),
     ) {
         icons.forEachIndexed { index, icon ->
-            val align = when (index) {
-                0 -> Alignment.TopStart
-                1 -> Alignment.TopEnd
-                2 -> Alignment.BottomStart
-                else -> Alignment.BottomEnd
-            }
-            val padding = when (index) {
-                0 -> PaddingValues(end = 1.dp, bottom = 1.dp)
-                1 -> PaddingValues(start = 1.dp, bottom = 1.dp)
-                2 -> PaddingValues(end = 1.dp, top = 1.dp)
-                else -> PaddingValues(start = 1.dp, top = 1.dp)
-            }
             BpkCard(
                 modifier = Modifier
-                    .align(align)
+                    .align(getAlignForIconIndex(index))
                     .size(width = (boxSize.width / 6).dp, height = (boxSize.height / 6).dp)
-                    .padding(padding),
+                    .padding(getPaddingForIconIndex(index)),
                 padding = BpkCardPadding.None,
                 elevation = BpkCardElevation.None,
             ) {
@@ -255,6 +241,24 @@ fun FourBoxIcons(
                 )
             }
         }
+    }
+}
+
+private fun getAlignForIconIndex(index: Int): Alignment {
+    return when (index) {
+        0 -> Alignment.TopStart
+        1 -> Alignment.TopEnd
+        2 -> Alignment.BottomStart
+        else -> Alignment.BottomEnd
+    }
+}
+
+private fun getPaddingForIconIndex(index: Int): PaddingValues {
+    return when (index) {
+        0 -> PaddingValues(end = 1.dp, bottom = 1.dp)
+        1 -> PaddingValues(start = 1.dp, bottom = 1.dp)
+        2 -> PaddingValues(end = 1.dp, top = 1.dp)
+        else -> PaddingValues(start = 1.dp, top = 1.dp)
     }
 }
 
