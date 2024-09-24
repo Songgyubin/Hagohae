@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Hagohae</string>
     <string name="accessibility_service_description">description</string>
+    <string name="app_slogan">할 건 하고 합시다 !</string>
+    <string name="todo_list">내가 할 일들</string>
+    <string name="start_blocking_time">차단 시작 시간</string>
 </resources>
