@@ -1,4 +1,4 @@
-package com.example.hagohae.home
+package com.gyub.hagohae.home
 
 import androidx.lifecycle.ViewModel
 

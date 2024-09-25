@@ -1,4 +1,4 @@
-package com.example.hagohae.onborading
+package com.gyub.hagohae.onborading
 
 import androidx.compose.runtime.Composable
 

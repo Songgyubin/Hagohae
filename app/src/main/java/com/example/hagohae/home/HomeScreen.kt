@@ -1,4 +1,4 @@
-package com.example.hagohae.home
+package com.gyub.hagohae.home
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -39,7 +39,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.example.hagohae.R
+import com.gyub.hagohae.R
 import net.skyscanner.backpack.compose.card.BpkCard
 import net.skyscanner.backpack.compose.card.BpkCardElevation
 import net.skyscanner.backpack.compose.card.BpkCardPadding

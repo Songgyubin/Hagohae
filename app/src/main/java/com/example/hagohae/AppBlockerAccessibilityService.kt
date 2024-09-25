@@ -1,4 +1,4 @@
-package com.example.hagohae
+package com.gyub.hagohae
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo

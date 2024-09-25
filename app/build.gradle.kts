@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.hagohae"
+    namespace = "com.gyub.hagohae"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.hagohae"
+        applicationId = "com.gyub.hagohae"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

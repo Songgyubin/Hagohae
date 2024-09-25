@@ -1,4 +1,4 @@
-package com.example.hagohae.ui.theme
+package com.gyub.hagohae.ui.theme
 
 import android.app.Activity
 import android.os.Build

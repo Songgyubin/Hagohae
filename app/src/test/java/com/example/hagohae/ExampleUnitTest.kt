@@ -1,4 +1,4 @@
-package com.example.hagohae
+package com.gyub.hagohae
 
 import org.junit.Test
 

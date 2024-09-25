@@ -1,4 +1,4 @@
-package com.example.hagohae.navigation
+package com.gyub.hagohae.navigation
 
 import kotlinx.serialization.Serializable
 
