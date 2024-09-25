@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -136,6 +137,14 @@ fun AppItem(appInfo: ApplicationInfo, isBlocked: Boolean, onAppSelected: (Applic
         }
     }
 
+    Log.d("TAG", "appIcon - : $appIcon")
+
+
+    // Drawable을 Bitmap으로 변환하여 Compose의 ImageBitmap으로 사용
+    val iconBitmap = remember(appIcon) {
+        appIcon.toBitmap().asImageBitmap()  // Drawable -> Bitmap -> ImageBitmap 변환
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -143,8 +152,9 @@ fun AppItem(appInfo: ApplicationInfo, isBlocked: Boolean, onAppSelected: (Applic
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            bitmap = appIcon.toBitmap().asImageBitmap(),
+        Log.d("TAG", "appIcon - : $appIcon")
+        Image(
+            bitmap = iconBitmap,
             contentDescription = appName,
             modifier = Modifier.size(40.dp)
         )
