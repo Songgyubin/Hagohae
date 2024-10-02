@@ -1,4 +1,4 @@
-package com.example.hagohae.mission
+package com.gyub.hagohae.mission
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
