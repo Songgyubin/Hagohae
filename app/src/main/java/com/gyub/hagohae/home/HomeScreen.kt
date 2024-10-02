@@ -53,8 +53,20 @@ import net.skyscanner.backpack.compose.theme.BpkTheme
  * @created  2024/09/21
  */
 @Composable
+fun HomeRoute(
+    innerPadding: PaddingValues = PaddingValues(),
+    navigateMissionDetail: (Boolean) -> Unit,
+) {
+    HomeScreen(
+        innerPadding = innerPadding,
+        navigateMissionDetail = navigateMissionDetail
+    )
+}
+
+@Composable
 fun HomeScreen(
     innerPadding: PaddingValues = PaddingValues(),
+    navigateMissionDetail: (Boolean) -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -279,7 +291,7 @@ private fun AppIconsContainerPreview() {
 @Composable
 private fun HomeScreenPreview() {
     BpkTheme {
-        HomeScreen()
+        HomeScreen(navigateMissionDetail = {})
     }
 }
 

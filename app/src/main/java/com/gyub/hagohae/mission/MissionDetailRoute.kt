@@ -10,8 +10,16 @@ import androidx.compose.runtime.Composable
  * @created  2024/09/24
  */
 @Composable
+fun MissionDetailRoute(
+    innerPadding: PaddingValues,
+    onBackClick: () -> Unit,
+) {
+    MissionDetailScreen(innerPadding)
+}
+
+@Composable
 fun MissionDetailScreen(
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
 ) {
 
 }

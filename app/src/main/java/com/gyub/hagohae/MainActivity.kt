@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     contentColor = BpkTheme.colors.surfaceDefault
                 ) { innerPadding ->
-                    HomeScreen(innerPadding)
+                    HomeScreen(innerPadding, navigateMissionDetail)
                 }
             }
         }
