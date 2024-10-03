@@ -12,7 +12,6 @@ import com.gyub.hagohae.navigation.Route
  * @author   Gyub
  * @created  2024/10/02
  */
-
 fun NavGraphBuilder.homeScreen(
     innerPadding: PaddingValues,
     onBackClick: () -> Unit,
