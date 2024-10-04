@@ -1,9 +1,10 @@
-package com.gyub.hagohae.mission
+package com.gyub.hagohae.mission.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.gyub.hagohae.mission.MissionDetailRoute
 import com.gyub.hagohae.navigation.Route
 
 /**

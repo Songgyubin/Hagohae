@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Scaffold
 import com.gyub.hagohae.home.HomeScreen
+import com.gyub.hagohae.navigation.MainNavHost
+import com.gyub.hagohae.navigation.Route
 import net.skyscanner.backpack.compose.theme.BpkTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +21,9 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     contentColor = BpkTheme.colors.surfaceDefault
                 ) { innerPadding ->
-                    HomeScreen(innerPadding, navigateMissionDetail)
+                    MainNavHost(
+                        innerPadding = innerPadding,
+                    )
                 }
             }
         }
