@@ -26,7 +26,7 @@ fun MainNavHost(
         homeScreen(
             innerPadding = innerPadding,
             onBackClick = {},
-            navigateMissionDetail = { },
+            navigateMissionDetail = { navController.navigate(Route.MissionDetail(isEdit = false))},
         )
         missionDetailScreen(
             innerPadding = innerPadding,

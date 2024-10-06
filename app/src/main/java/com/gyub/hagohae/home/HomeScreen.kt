@@ -85,7 +85,8 @@ fun HomeScreen(
             Missions(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 30.dp)
+                    .padding(top = 30.dp),
+                navigateMissionDetail = navigateMissionDetail
             )
         }
 
@@ -95,7 +96,7 @@ fun HomeScreen(
                 .padding(20.dp),
             shape = CircleShape,
             containerColor = BpkTheme.colors.corePrimary,
-            onClick = {}
+            onClick = { navigateMissionDetail(true) }
         ) {
             Icon(
                 imageVector = Icons.Filled.Add,
@@ -107,7 +108,10 @@ fun HomeScreen(
 }
 
 @Composable
-fun Missions(modifier: Modifier = Modifier) {
+fun Missions(
+    modifier: Modifier = Modifier,
+    navigateMissionDetail: (Boolean) -> Unit,
+) {
     Column(
         modifier = modifier
     ) {
@@ -126,7 +130,8 @@ fun Missions(modifier: Modifier = Modifier) {
             items(10) {
                 MissionItem(
                     missionTitle = "자기 전에 오늘 회고록 작성하기",
-                    blockingStartTime = "오후 11시 30분"
+                    blockingStartTime = "오후 11시 30분",
+                    navigateMissionDetail = navigateMissionDetail
                 )
             }
         }
@@ -137,12 +142,14 @@ fun Missions(modifier: Modifier = Modifier) {
 fun MissionItem(
     missionTitle: String,
     blockingStartTime: String,
+    navigateMissionDetail: (Boolean) -> Unit,
 ) {
     BpkCard(
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(2.0f),
-        padding = BpkCardPadding.None
+        padding = BpkCardPadding.None,
+        onClick = { navigateMissionDetail(true) }
     ) {
         Row(
             modifier = Modifier
@@ -301,7 +308,8 @@ private fun MissionItemPreview() {
     BpkTheme {
         MissionItem(
             missionTitle = "자기 전에 오늘 회고록 작성하기",
-            blockingStartTime = "오후 11시 30분"
+            blockingStartTime = "오후 11시 30분",
+            navigateMissionDetail = { }
         )
     }
 }
