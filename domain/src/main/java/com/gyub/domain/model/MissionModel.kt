@@ -7,6 +7,7 @@ package com.gyub.domain.model
  * @created  2024/09/29
  */
 data class MissionModel(
+    val id: Int = 0,
     val title: String = "",
     val contents: String = "",
     val blockingStartTime: Long = 0L,
