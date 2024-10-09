@@ -15,6 +15,7 @@ data class MissionModel(
     val tags: List<String> = emptyList(),
 ) {
     data class AppModel(
+        val appId: String = "",
         val packageName: String = "",
     )
 }
