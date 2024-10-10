@@ -1,6 +1,7 @@
 package com.gyub.domain.usecase
 
 import com.gyub.domain.model.MissionModel
+import com.gyub.domain.repository.MissionRepository
 import javax.inject.Inject
 
 /**
@@ -10,9 +11,9 @@ import javax.inject.Inject
  * @created  2024/10/01
  */
 class GetMissionsUseCase @Inject constructor(
-
+    private val repository: MissionRepository,
 ) {
     suspend operator fun invoke(): List<MissionModel> {
-        return listOf()
+        return repository.getMissions()
     }
 }
