@@ -1,6 +1,7 @@
 package com.gyub.domain.repository
 
 import com.gyub.domain.model.MissionModel
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Mission Repository
@@ -10,5 +11,5 @@ import com.gyub.domain.model.MissionModel
  */
 interface MissionRepository {
 
-    suspend fun getMissions(): List<MissionModel>
+    suspend fun getMissions(): Flow<androidx.paging.PagingData<MissionModel>>
 }

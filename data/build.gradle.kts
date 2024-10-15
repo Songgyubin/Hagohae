@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
     implementation(libs.androidx.room.gradlePlugin)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.room.runtime)

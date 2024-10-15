@@ -2,6 +2,7 @@ package com.gyub.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.gyub.domain.model.MissionModel
 
 /**
  * 각 미션 Entity
@@ -23,3 +24,17 @@ data class MissionEntity(
         val packageName: String = "",
     )
 }
+
+fun MissionEntity.toDomainModel() = MissionModel(
+    id = id,
+    title = title,
+    contents = contents,
+    blockingStartTime = blockingStartTime,
+    blockedApps = blockedApps.map { it.toDomainModel() },
+    tags = tags,
+)
+
+fun MissionEntity.AppEntity.toDomainModel() = MissionModel.AppModel(
+    appId = appId,
+    packageName = packageName,
+)
