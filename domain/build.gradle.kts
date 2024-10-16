@@ -32,6 +32,8 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.paging.common)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 

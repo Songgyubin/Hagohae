@@ -1,7 +1,9 @@
 package com.gyub.domain.usecase
 
+import androidx.paging.PagingData
 import com.gyub.domain.model.MissionModel
 import com.gyub.domain.repository.MissionRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -13,7 +15,6 @@ import javax.inject.Inject
 class GetMissionsUseCase @Inject constructor(
     private val repository: MissionRepository,
 ) {
-    suspend operator fun invoke(): List<MissionModel> {
-        return repository.getMissions()
-    }
+    suspend operator fun invoke(): Flow<PagingData<MissionModel>> =
+        repository.getMissions()
 }
