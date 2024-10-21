@@ -11,6 +11,7 @@ import com.gyub.domain.repository.MissionRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Mission Repository 구현체
@@ -18,6 +19,7 @@ import javax.inject.Inject
  * @author   Gyub
  * @created  2024/10/15
  */
+@Singleton
 class MissionRepositoryImpl @Inject constructor(
     private val missionDao: MissionDao,
 ) : MissionRepository {
