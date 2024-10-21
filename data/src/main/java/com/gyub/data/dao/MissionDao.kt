@@ -1,6 +1,7 @@
 package com.gyub.data.dao
 
 import androidx.paging.PagingSource
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -12,6 +13,7 @@ import com.gyub.data.model.MissionEntity
  * @author   Gyub
  * @created  2024/10/15
  */
+@Dao
 interface MissionDao {
 
     @Query("SELECT * FROM mission")

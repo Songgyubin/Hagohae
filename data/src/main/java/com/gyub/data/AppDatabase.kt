@@ -2,6 +2,7 @@ package com.gyub.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.gyub.data.dao.MissionDao
 import com.gyub.data.model.MissionEntity
 
@@ -18,6 +19,7 @@ import com.gyub.data.model.MissionEntity
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
    abstract fun missionDao(): MissionDao
 }

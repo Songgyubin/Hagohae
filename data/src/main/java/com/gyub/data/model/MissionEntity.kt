@@ -3,6 +3,7 @@ package com.gyub.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.gyub.domain.model.MissionModel
+import kotlinx.serialization.Serializable
 
 /**
  * 각 미션 Entity
@@ -19,6 +20,7 @@ data class MissionEntity(
     val blockedApps: List<AppEntity> = emptyList(),
     val tags: List<String> = emptyList(),
 ) {
+    @Serializable
     data class AppEntity(
         val appId: String = "",
         val packageName: String = "",
