@@ -70,7 +70,7 @@ fun HomeScreen(
 ) {
     Box(
         modifier = Modifier
-            .background(BpkTheme.colors.surfaceDefault)
+            .background(BpkTheme.colors.canvas)
             .fillMaxSize()
             .padding(innerPadding)
     ) {
@@ -154,7 +154,7 @@ fun MissionItem(
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .background(BpkTheme.colors.canvasContrast),
+                .background(BpkTheme.colors.surfaceDefault),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
