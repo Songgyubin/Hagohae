@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
 import com.gyub.hagohae.home.navigation.homeScreen
 import com.gyub.hagohae.mission.navigation.missionDetailScreen
 
@@ -26,7 +27,10 @@ fun MainNavHost(
         homeScreen(
             innerPadding = innerPadding,
             onBackClick = {},
-            navigateMissionDetail = { navController.navigate(Route.MissionDetail(isEdit = false))},
+            navigateMissionDetail = {
+                navController.navigate(Route.MissionDetail(isEdit = false),
+                    navOptions = navOptions { launchSingleTop = true })
+            },
         )
         missionDetailScreen(
             innerPadding = innerPadding,
