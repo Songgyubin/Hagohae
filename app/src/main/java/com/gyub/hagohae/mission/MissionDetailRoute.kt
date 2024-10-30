@@ -7,16 +7,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import net.skyscanner.backpack.compose.card.BpkCard
 import net.skyscanner.backpack.compose.card.BpkCardCorner
-import net.skyscanner.backpack.compose.text.BpkText
 import net.skyscanner.backpack.compose.theme.BpkTheme
 
 /**
@@ -49,17 +55,20 @@ fun MissionDetailScreen(
                 modifier = Modifier.background(BpkTheme.colors.canvas),
                 isEdit = false
             )
+            Spacer(modifier = Modifier.height(20.dp))
             MissionDetailContent()
         }
     }
 }
 
 @Composable
-fun ColumnScope.MissionDetailContent(
+fun MissionDetailContent(
 
 ) {
     Column(
-        modifier = Modifier.padding(horizontal = 20.dp),
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = spacedBy(15.dp)
     ) {
         MissionTitle()
@@ -71,21 +80,47 @@ fun ColumnScope.MissionDetailContent(
 }
 
 @Composable
-fun MissionTitle() {
-    BpkCard(
-        modifier = Modifier
-            .fillMaxWidth(),
-        corner = BpkCardCorner.Large,
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            BpkText(
-                text = "미션 제목"
+fun MissionTitle(
+    title: String = "",
+) {
+    MissionCard {
+        Column {
+            MissionDetailCardSectionTextField(
+                modifier = Modifier.fillMaxSize(),
+                value = title,
+                onValueChange = {},
+                placeholder = "미션 제목",
             )
         }
     }
+}
+
+@Composable
+fun MissionDetailCardSectionTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+) {
+    TextField(
+        modifier = modifier,
+        value = value,
+        onValueChange = onValueChange,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = BpkTheme.colors.surfaceDefault,
+            unfocusedContainerColor = BpkTheme.colors.surfaceDefault,
+            disabledContainerColor = BpkTheme.colors.surfaceDefault,
+            focusedIndicatorColor = BpkTheme.colors.surfaceDefault,
+            unfocusedIndicatorColor = BpkTheme.colors.surfaceDefault,
+            disabledIndicatorColor = BpkTheme.colors.surfaceDefault,
+        ),
+        placeholder = {
+            Text(
+                placeholder,
+                color = BpkTheme.colors.textPrimary
+            )
+        },
+    )
 }
 
 @Composable
@@ -118,7 +153,7 @@ fun BlockedApps() {
 
 @Composable
 fun MissionCard(
-    content: @Composable () -> Unit,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     BpkCard(
         modifier = Modifier.fillMaxWidth(),
