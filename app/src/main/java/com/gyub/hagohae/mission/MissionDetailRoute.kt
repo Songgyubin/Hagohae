@@ -2,26 +2,31 @@ package com.gyub.hagohae.mission
 
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -74,15 +79,14 @@ fun MissionDetailContent(
 ) {
     Column(
         modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .verticalScroll(rememberScrollState()),
+            .padding(horizontal = 20.dp),
+//            .verticalScroll(rememberScrollState()),
         verticalArrangement = spacedBy(15.dp)
     ) {
         MissionTitle()
         MissionContent()
         BlockStartTime()
         BlockEndTime()
-        BlockedApps()
     }
 }
 
@@ -91,14 +95,12 @@ fun MissionTitle(
     title: String = "",
 ) {
     MissionCard {
-        Column {
-            MissionDetailCardSectionTextField(
-                modifier = Modifier.fillMaxSize(),
-                value = title,
-                onValueChange = {},
-                placeholder = "미션 제목",
-            )
-        }
+        MissionDetailCardSectionTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = title,
+            onValueChange = {},
+            placeholder = "미션 제목",
+        )
     }
 }
 
@@ -137,7 +139,7 @@ fun MissionContent(
     MissionCard {
         Column {
             MissionDetailCardSectionTextField(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
                 value = title,
                 onValueChange = {},
                 placeholder = "미션 내용",
@@ -149,8 +151,9 @@ fun MissionContent(
 @Composable
 fun BlockStartTime() {
     val context = LocalContext.current
-    val (startHour, setStartHour) = remember { mutableIntStateOf(0) }
-    val (startMinute, setStartMinute) = remember { mutableStateOf(0) }
+    val sharedPreferences = context.getSharedPreferences("blocked_apps_prefs", Context.MODE_PRIVATE)
+    val (startHour, setStartHour) = remember { mutableStateOf(sharedPreferences.getInt("block_start_hour", 0)) }
+    val (startMinute, setStartMinute) = remember { mutableStateOf(sharedPreferences.getInt("block_start_minute", 0)) }
 
     MissionCard {
         Column {
@@ -165,6 +168,10 @@ fun BlockStartTime() {
                     ) { hour, minute ->
                         setStartHour(hour)
                         setStartMinute(minute)
+                        sharedPreferences.edit()
+                            .putInt("block_start_hour", hour)
+                            .putInt("block_start_minute", minute)
+                            .apply()
                     }
                 }
             ) {
@@ -179,8 +186,9 @@ fun BlockStartTime() {
 @Composable
 fun BlockEndTime() {
     val context = LocalContext.current
-    val (endHour, setEndHour) = remember { mutableStateOf(0) }
-    val (endMinute, setEndMinute) = remember { mutableStateOf(0) }
+    val sharedPreferences = context.getSharedPreferences("blocked_apps_prefs", Context.MODE_PRIVATE)
+    val (endHour, setEndHour) = remember { mutableStateOf(sharedPreferences.getInt("block_end_hour", 0)) }
+    val (endMinute, setEndMinute) = remember { mutableStateOf(sharedPreferences.getInt("block_end_minute", 0)) }
 
     MissionCard {
         Column {
@@ -195,6 +203,10 @@ fun BlockEndTime() {
                     ) { hour, minute ->
                         setEndHour(hour)
                         setEndMinute(minute)
+                        sharedPreferences.edit()
+                            .putInt("block_end_hour", hour)
+                            .putInt("block_end_minute", minute)
+                            .apply()
                     }
                 }
             ) {
@@ -202,14 +214,6 @@ fun BlockEndTime() {
             }
             Text(text = String.format("선택된 시간: %02d:%02d", endHour, endMinute))
         }
-    }
-}
-
-
-@Composable
-fun BlockedApps() {
-    MissionCard {
-
     }
 }
 
