@@ -1,5 +1,7 @@
 package com.gyub.hagohae.mission
 
+import android.app.TimePickerDialog
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -14,11 +16,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import net.skyscanner.backpack.compose.card.BpkCard
@@ -124,31 +131,102 @@ fun MissionDetailCardSectionTextField(
 }
 
 @Composable
-fun MissionContent() {
+fun MissionContent(
+    title: String = "",
+) {
     MissionCard {
-
+        Column {
+            MissionDetailCardSectionTextField(
+                modifier = Modifier.fillMaxSize(),
+                value = title,
+                onValueChange = {},
+                placeholder = "미션 내용",
+            )
+        }
     }
 }
 
 @Composable
 fun BlockStartTime() {
-    MissionCard {
+    val context = LocalContext.current
+    val (startHour, setStartHour) = remember { mutableIntStateOf(0) }
+    val (startMinute, setStartMinute) = remember { mutableStateOf(0) }
 
+    MissionCard {
+        Column {
+            Text(text = "앱 차단 시작 시간", style = BpkTheme.typography.heading5)
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                onClick = {
+                    showTimePicker(
+                        context = context,
+                        initialHour = startHour,
+                        initialMinute = startMinute
+                    ) { hour, minute ->
+                        setStartHour(hour)
+                        setStartMinute(minute)
+                    }
+                }
+            ) {
+                Text(text = "시작 시간 선택")
+            }
+            Text(text = String.format("선택된 시간: %02d:%02d", startHour, startMinute))
+        }
     }
 }
+
 
 @Composable
 fun BlockEndTime() {
-    MissionCard {
+    val context = LocalContext.current
+    val (endHour, setEndHour) = remember { mutableStateOf(0) }
+    val (endMinute, setEndMinute) = remember { mutableStateOf(0) }
 
+    MissionCard {
+        Column {
+            Text(text = "앱 차단 종료 시간", style = BpkTheme.typography.heading5)
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                onClick = {
+                    showTimePicker(
+                        context = context,
+                        initialHour = endHour,
+                        initialMinute = endMinute
+                    ) { hour, minute ->
+                        setEndHour(hour)
+                        setEndMinute(minute)
+                    }
+                }
+            ) {
+                Text(text = "종료 시간 선택")
+            }
+            Text(text = String.format("선택된 시간: %02d:%02d", endHour, endMinute))
+        }
     }
 }
+
 
 @Composable
 fun BlockedApps() {
     MissionCard {
 
     }
+}
+
+fun showTimePicker(
+    context: Context,
+    initialHour: Int = 0,
+    initialMinute: Int = 0,
+    onTimeSelected: (Int, Int) -> Unit,
+) {
+    val timePickerDialog = TimePickerDialog(
+        context,
+        { _, hour: Int, minute: Int -> onTimeSelected(hour, minute) },
+        initialHour,
+        initialMinute,
+        true
+    )
+    timePickerDialog.show()
 }
 
 @Composable

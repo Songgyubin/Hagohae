@@ -30,7 +30,7 @@
 
         <!-- 접근성 서비스 등록 -->
         <service
-            android:name=".AppBlockerAccessibilityService"
+            android:name=".service.AppBlockerAccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:exported="false">
             <intent-filter>
